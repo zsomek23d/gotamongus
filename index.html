@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Az Arctalan – Trónok harca Among Us</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ===== FŐMENÜ ===== -->
+<div id="screen-menu" class="screen active">
+  <div class="menu-box">
+    <h1 class="title">🗡️ Az Arctalan</h1>
+    <p class="subtitle">Egy Arctalan ember jár köztetek... Trónok harca × Among Us</p>
+    <input id="inp-name" type="text" maxlength="20" placeholder="A neved, nagyúr...">
+    <button id="btn-create" class="btn btn-gold">Új játék indítása</button>
+    <div class="join-row">
+      <input id="inp-code" type="text" maxlength="4" placeholder="KÓD">
+      <button id="btn-join" class="btn">Csatlakozás</button>
+    </div>
+    <p id="menu-error" class="error"></p>
+  </div>
+</div>
+
+<!-- ===== LOBBY ===== -->
+<div id="screen-lobby" class="screen">
+  <div class="menu-box wide">
+    <h2>A társaság gyülekezik</h2>
+    <p>Szobakód: <span id="lobby-code" class="code"></span> <button id="btn-copy" class="btn btn-small">Másolás</button></p>
+    <div id="map-select" class="map-row"></div>
+    <ul id="lobby-players"></ul>
+    <div id="host-controls" class="hidden">
+      <div class="bot-row">
+        <select id="sel-difficulty">
+          <option value="easy">Könnyű bot</option>
+          <option value="medium" selected>Közepes bot</option>
+          <option value="hard">Nehéz bot</option>
+        </select>
+        <button id="btn-addbot" class="btn">+ Bot hozzáadása</button>
+      </div>
+      <button id="btn-start" class="btn btn-gold">Indulás!</button>
+    </div>
+    <p id="lobby-hint" class="hint"></p>
+  </div>
+</div>
+
+<!-- ===== JÁTÉK ===== -->
+<div id="screen-game" class="screen">
+  <canvas id="canvas"></canvas>
+
+  <div id="hud">
+    <div class="hud-row">
+      <span class="score-item">Kör: <b id="hud-round">1</b>/<span id="hud-maxrounds">6</span></span>
+      <span class="score-item">Küldetések: <b id="hud-tasks">0/0</b></span>
+      <span class="score-item" id="hud-map"></span>
+    </div>
+    <div id="timer-wrap"><div id="timer-bar"></div></div>
+    <div id="role-badge" class="hidden"></div>
+  </div>
+
+  <div id="tasklist"></div>
+
+  <div id="action-bar">
+    <button id="btn-task" class="btn btn-action hidden">🔧 Feladat <kbd>E</kbd></button>
+    <button id="btn-report" class="btn btn-action btn-report hidden">🚨 Jelentés <kbd>R</kbd></button>
+    <button id="btn-kill" class="btn btn-action btn-kill hidden">🗡️ Ölés <kbd>Q</kbd></button>
+  </div>
+  <div id="task-progress" class="hidden"><div id="task-progress-bar"></div></div>
+  <div id="phase-hint"></div>
+  <div id="kill-flash" class="hidden">⚔️</div>
+
+  <!-- Tanácskozás panel -->
+  <div id="meeting" class="hidden">
+    <div id="meeting-box">
+      <h2 id="meeting-title"></h2>
+      <p id="meeting-sub"></p>
+      <div id="meeting-players"></div>
+      <button id="btn-skip" class="btn hidden">Kihagyom a szavazást</button>
+    </div>
+  </div>
+
+  <div id="chat-panel">
+    <div id="chat-log"></div>
+    <div id="chat-input-row">
+      <input id="inp-chat" type="text" maxlength="200" placeholder="Írj a többieknek...">
+      <button id="btn-chat" class="btn btn-small">Küldés</button>
+    </div>
+  </div>
+
+  <div id="overlay" class="hidden">
+    <div id="overlay-box"></div>
+  </div>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="gfx.js"></script>
+<script src="client.js"></script>
+</body>
+</html>
